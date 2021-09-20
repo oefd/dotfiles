@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import sys
+import os
+import subprocess
+
+from _lib.style import Style
+from _lib.clobberable import path_matches_any
+from _lib.recursive_symlink import recursive_symlink
+from _lib.install import install_neovim
+
+
+if __name__ == "__main__":
+    in_spin = os.environ.get("SPIN") == 1
+
+    link_for_common = recursive_symlink(
+        link_path="~",
+        link_target="common",
+        clobberable=path_matches_any([r".*\.zshrc$"]),
+    )
+
+    if in_spin:
+        link_for_env = recursive_symlink(
+            link_path="~",
+            link_target="spin",
+            clobberable=path_matches_any([r".*\.zshrc$"]),
+        )
+    else:
+        link_for_env = recursive_symlink(
+            link_path="~",
+            link_target="iceowl",
+            clobberable=None,
+        )
+
+    print(f"{Style.BOLD}{Style.CYAN}common config:{Style.RESET}")
+    print(link_for_common)
+    print(f"{Style.BOLD}{Style.CYAN}environment specific config:{Style.RESET}")
+    print(link_for_env)
+
+    link_status = 0
+    links = [link_for_common, link_for_env]
+    if any([link.has_unclobberable_conflicts() for link in links]):
+        link_status = 1
+
+    print(f"{Style.BOLD}{Style.CYAN}remote file downloads:{Style.RESET}")
+    install_neovim()
+    print(f"{Style.BOLD}{Style.GREEN}✔ neovim{Style.RESET}")
+
+    nvim_plug_result = subprocess.run(["nvim", "--headless", "+PlugInstall --sync", "+qa"])
+    nvim_plug_status = nvim_plug_result.returncode
+
+    if nvim_plug_status == 0:
+        print(f"{Style.BOLD}{Style.GREEN}✔ neovim initialiation successful ✔{Style.RESET}")
+    else:
+        print(f"{Style.BOLD}{Style.RED}✗ neovim initialiation failed ✗{Style.RESET}")
+
+    if link_status == 0:
+        print(f"{Style.BOLD}{Style.GREEN}✔ all files linked ✔{Style.RESET}")
+    else:
+        print(f"{Style.BOLD}{Style.RED}✗ some files could not be linked ✗{Style.RESET}")
+
+    sys.exit(1 if (link_status or nvim_plug_status) else 0)
