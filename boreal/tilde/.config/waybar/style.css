@@ -1,0 +1,31 @@
+* {
+    color:         #d8dee9;
+    background:    #2e3440;
+    border:        none;
+    border-radius: 0;
+    font-family:   "Iosevka Term";
+    font-size:     1rem;
+}
+
+#workspaces button {
+    color: #fff;
+    padding: 0 7px;
+}
+#workspaces button.focused {
+    font-weight: bold;
+    border-bottom: 2px solid #eceff4;
+}
+#workspaces button.urgent {
+    font-weight: bold;
+    color: #d08770;
+}
+
+#clock {
+    font-weight: bold;
+}
+
+#mode {
+    padding: 0 8px;
+    color: #eceff4;
+    background: #4c566a;
+}

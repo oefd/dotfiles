@@ -1,0 +1,3 @@
+[[ $- != *i* ]] && return
+
+exec fish
