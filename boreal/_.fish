@@ -40,6 +40,13 @@ __file \
     --group root \
     --perms 644
 
+__file \
+    --path /usr/etc/npmrc \
+    --source boreal/files/npmrc \
+    --owner root \
+    --group root \
+    --perms 644
+
 
 ###############
 # user config #
@@ -88,6 +95,11 @@ __pacman \
     ttf-ibm-plex \
     ttf-iosevka-nerd \
     ttf-nerd-fonts-symbols-mono
+
+# languages
+__pacman \
+    nodejs \
+    npm
 
 __user \
     --name terry \
