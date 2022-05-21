@@ -76,6 +76,7 @@ __pacman \
     foot-terminfo \
     xdg-utils \
     libnotify \
+    wl-clipboard \
     pavucontrol
 
 # fonts

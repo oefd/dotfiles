@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "height": 26,
-    "margin": 3,
+    "margin": 0,
     "spacing": 16,
     "output": ["eDP-1"],
 

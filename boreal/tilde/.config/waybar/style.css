@@ -1,10 +1,9 @@
 * {
-    color:         #d8dee9;
-    background:    #2e3440;
+    background:    #d8dee9;
+    color:         #2e3440;
     border:        none;
     border-radius: 0;
     font-family:   "Iosevka Term";
-    font-size:     1rem;
 }
 
 #workspaces button {
@@ -13,7 +12,7 @@
 }
 #workspaces button.focused {
     font-weight: bold;
-    border-bottom: 2px solid #eceff4;
+    border-bottom: 2px solid #2e3440;
 }
 #workspaces button.urgent {
     font-weight: bold;

@@ -57,6 +57,7 @@ packer.startup(function(use)
     use { "nvim-treesitter/nvim-treesitter",
         config = require("conf/_nvim_treesitter"),
         run = ":TSUpdate" }
+    use { "hashivim/vim-terraform" }
 
     execute "PackerInstall"
 end)

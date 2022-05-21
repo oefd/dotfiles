@@ -6,4 +6,4 @@
 	editor = /usr/bin/nvim
 
 [init]
-	defaultBranch = true
+	defaultBranch = trunk
