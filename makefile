@@ -5,3 +5,7 @@ all:
 .PHONY: boreal
 boreal:
 	@fish boreal/_.fish
+
+.PHONY: loial
+loial:
+	@fish loial/_.fish

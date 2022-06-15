@@ -1,0 +1,9 @@
+[init]
+        defaultBranch = trunk
+[user]
+        email = terry.kerr@shopify.com
+        name = Terry Kerr
+[core]
+        editor = nvim
+[include]
+        path = /Users/oefd/.config/dev/gitconfig
