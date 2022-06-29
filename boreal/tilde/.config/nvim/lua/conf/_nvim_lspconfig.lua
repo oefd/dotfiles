@@ -5,7 +5,8 @@ return function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
-    local servers = { "rust_analyzer", "gopls", "tsserver", "pylsp" }
+    -- deno/tsserver managed manually at the end
+    local servers = { "rust_analyzer", "gopls", "pylsp" }
 
     local on_attach = function(client, bufnr)
         local opts = { noremap = true, silent = true }
@@ -33,4 +34,22 @@ return function()
             capabilities = capabilities,
         }
     end
+    nvim_lsp["denols"].setup {
+        on_attach = on_attach,
+        flags = { debounce_text_changes = 150 },
+        capabilities = capabilities,
+        root_dir = nvim_lsp.util.root_pattern(".deno"),
+        init_options = {
+            lint = true,
+        },
+    }
+    nvim_lsp["tsserver"].setup {
+        on_attach = on_attach,
+        flags = { debounce_text_changes = 150 },
+        capabilities = capabilities,
+        root_dir = nvim_lsp.util.root_pattern("package.json"),
+        init_options = {
+            lint = true,
+        },
+    }
 end
